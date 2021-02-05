@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="stretch">
+
+    <xacro:include filename="$(find stretch_gazebo)/urdf/stretch/stretch_base.xacro"/>  
+    <xacro:include filename="$(find stretch_gazebo)/urdf/stretch/stretch_right_wheel.xacro"/>
+    <xacro:include filename="$(find stretch_gazebo)/urdf/stretch/stretch_left_wheel.xacro"/>
+    <xacro:include filename="$(find stretch_gazebo)/urdf/stretch/stretch_mast.xacro"/>
+    <xacro:include filename="$(find stretch_gazebo)/urdf/stretch/stretch_arm_l4.xacro"/>
+    <xacro:include filename="$(find stretch_gazebo)/urdf/stretch/stretch_arm_l3.xacro"/>
+    <xacro:include filename="$(find stretch_gazebo)/urdf/stretch/stretch_arm_l2.xacro"/>
+    <xacro:include filename="$(find stretch_gazebo)/urdf/stretch/stretch_arm_l1.xacro"/>
+    <xacro:include filename="$(find stretch_gazebo)/urdf/stretch/stretch_arm_l0.xacro"/>
+    <xacro:include filename="$(find stretch_gazebo)/urdf/stretch/stretch_wrist.xacro"/>
+    <xacro:include filename="$(find stretch_gazebo)/urdf/stretch/stretch_head.xacro"/>
+
+    <!-- Realsense Camera -->
+    <!-- <xacro:include filename="$(find stretch_description)/urdf/stretch_d435i.xacro"/> -->
+
+    <!-- Gazebo plugin for ROS Control -->
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/</robotNamespace>
+        </plugin>
+    </gazebo>
+
+</robot>

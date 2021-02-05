@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="stretch_left_wheel">
+    <!-- Left Wheel Link -->
+    <link name="link_left_wheel">
+        <inertial>
+            <origin
+                xyz="1.2555462092223E-07 -3.54748938502514E-07 -0.0239581106165035"
+                rpy="0 0 0" />
+            <mass value="0.00356714564938459" />
+            <inertia ixx="0" ixy="0" ixz="0"
+                     iyy="0" iyz="0"
+                     izz="0" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh 
+                    filename="package://stretch_description/meshes/link_left_wheel.STL" />
+            </geometry>
+            <material name="">
+                <color
+                    rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh 
+                    filename="package://stretch_description/meshes/link_left_wheel.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Left Wheel Joint -->
+    <joint name="joint_left_wheel" type="continuous">
+        <origin
+            xyz="-0.00300000000001899 0.15765 0.0507999999999994"
+            rpy="-1.5707963267949 3.16227047920818E-31 7.88745438253713E-16" />
+        <parent link="base_link" />
+        <child link="link_left_wheel" />
+        <axis xyz="0 0 1" />
+    </joint>
+
+    <!-- Left Wheel Physical Properties for Gazebo -->
+    <gazebo reference="joint_right_wheel">
+        <mu1 value="200.0"/>
+        <mu2 value="100.0"/>
+        <kp value="10000000.0"/>
+        <kd value="1.0"/>
+        <material name="">
+            <color
+                rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+        </material>
+    </gazebo>
+
+    <!-- Gazebo transmission block for simulation -->
+    <transmission name="trans_left_wheel">
+        <type>transmission_interface/SimpleTransmission</type>
+        <actuator name="left_wheel_motor">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+        <joint name="joint_left_wheel">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        </joint>
+    </transmission>
+    
+
+</robot>

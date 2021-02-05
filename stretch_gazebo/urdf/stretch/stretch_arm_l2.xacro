@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="stretch_arm_l2">
+
+    <!-- ================= Arm L2 ================= -->
+    <!-- Arm l2 Link -->
+    <link name="link_arm_l2">
+        <inertial>
+            <origin
+                xyz="-3.31043560508615E-07 3.13422303999111E-07 -0.097255883541891"
+                rpy="0 0 0"/>
+            <mass value="0.0569074368576238"/>
+            <inertia
+                ixx="0.000105206697151872"
+                ixy="2.59896259031046E-14"
+                ixz="1.69941454517918E-09"
+                iyy="0.000105206697154717"
+                iyz="-1.60895568923743E-09"
+                izz="5.20570301686304E-14" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh
+                    filename="package://stretch_description/meshes/link_arm_l2.STL" />
+            </geometry>
+            <material name="">
+                <color
+                    rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin
+                xyz="0 0 0"
+                rpy="0 0 0" />
+            <geometry>
+                <mesh
+                    filename="package://stretch_description/meshes/link_arm_l2.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Arm l2 Joint -->
+    <!-- Change to prismatic -->
+    <joint name="joint_arm_l2" type="fixed">
+        <origin
+            xyz="0 0 0.013"
+            rpy="2.91385731014123E-16 4.44300759504684E-17 3.25691080516352E-16"/>
+        <parent link="link_arm_l3" />
+        <child link="link_arm_l2" />
+        <axis xyz="0 0 1"/>
+        <!-- <limit effort="100" lower="0.0" upper="0.13" velocity="1.0"/> -->
+    </joint>
+
+    <!-- Arm l2 Transmission block for gazebo -->
+    <!-- <transmission name="trans_arm_l2" type="SimpleTransmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <actuator name="arm_l2_motor">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+        <joint name="joint_arm_l2">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+    </transmission> -->
+
+
+</robot>
