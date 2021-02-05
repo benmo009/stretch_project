@@ -8,15 +8,10 @@ project(stretch_gazebo)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  controller_manager
-  diff_drive_controller
   gazebo_ros
   geometry_msgs
   roscpp
   rospy
-  std_msgs
-  stretch_description
-  xacro
 )
 
 ## System dependencies are found with CMake's conventions

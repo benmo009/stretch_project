@@ -11,7 +11,6 @@ find_package(catkin REQUIRED COMPONENTS
   move_base
   roscpp
   rospy
-  stretch_description
 )
 
 ## System dependencies are found with CMake's conventions
