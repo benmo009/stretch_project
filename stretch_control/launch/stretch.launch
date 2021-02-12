@@ -1,0 +1,30 @@
+<launch>
+    <!-- Load Stretch xacro into ROS Parameter Server -->
+    <param name="robot_description" command="$(find xacro)/xacro '$(find stretch_control)/urdf/stretch.xacro'" />
+
+    <!-- Start joint state publisher-->
+    <node name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+
+    <!-- Start robot state publisher -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+    <!-- Start Rviz -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find stretch_control)/rviz/stretch.rviz" />
+
+
+    <!-- Load differential drive controller config parameter -->
+    <rosparam command="load" file="$(find stretch_control)/config/stretch_control.yaml"/>
+
+    <!-- Spawn differential drive controller -->
+    <node name="stretch_controller_spawner" pkg="controller_manager" type="spawner"
+        args="/stretch/diff_drive_controller"/>
+
+
+    <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
+        <param name="default_topic" value="/stretch/diff_drive_controller/cmd_vel"/>
+    </node>
+    
+
+
+        
+</launch>

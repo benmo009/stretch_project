@@ -6,7 +6,7 @@
             <origin
                 xyz="1.25554620866719E-07 3.54748938447003E-07 0.0239581106165018"
                 rpy="0 0 0" />
-            <mass value="0.00356714564938475" />
+            <mass value="${0.00356714564938475}" />
             <inertia ixx="0" ixy="0" ixz="0"
                      iyy="0" iyz="0"
                      izz="0" />
@@ -41,19 +41,7 @@
         <axis xyz="0 0 1" />
     </joint>
 
-    <!-- Right Wheel Physical Properties for Gazebo -->
-    <gazebo reference="joint_right_wheel">
-        <mu1 value="200.0"/>
-        <mu2 value="100.0"/>
-        <kp value="10000000.0"/>
-        <kd value="1.0"/>
-        <material name="">
-            <color
-                rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-        </material>
-    </gazebo>
-
-    <!-- Gazebo transmission block for simulation -->
+    <!-- transmission block for ROS control -->
     <transmission name="trans_right_wheel">
         <type>transmission_interface/SimpleTransmission</type>
         <actuator name="right_wheel_motor">

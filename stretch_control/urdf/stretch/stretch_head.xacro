@@ -147,7 +147,7 @@
         </collision>
     </link>
 
-    <!-- Head Pan Joint -->
+    <!-- Head Tilt Joint -->
     <joint name="joint_head_tilt" type="revolute">
         <origin
             xyz="-0.0013 0.027507 -0.053311"
@@ -158,7 +158,7 @@
         <limit effort="100" lower="-1.53" upper="0.79" velocity="1.0"/>
     </joint>
 
-    <!-- Head Pan Transmission block for gazebo -->
+    <!-- Head Tilt Transmission block for gazebo -->
     <transmission name="trans_head_tilt" type="SimpleTransmission">
         <type>transmission_interface/SimpleTransmission</type>
         <actuator name="head_tilt_motor">
