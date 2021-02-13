@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="stretch_mass_factor">
-    <xacro:property name="base_mass" value="10"/>
-    <xacro:property name="wheel_mass" value="10"/>
-    <xacro:property name="mast_mass" value="5"/>
-    <xacro:property name="lift_mass" value="5"/>
-
-
-</robot>
