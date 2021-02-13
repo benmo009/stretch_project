@@ -16,13 +16,13 @@
     <rosparam command="load" file="$(find stretch_control)/config/stretch_control.yaml"/>
 
     <!-- Spawn differential drive controller -->
-    <node name="stretch_controller_spawner" pkg="controller_manager" type="spawner"
-        args="/stretch/diff_drive_controller"/>
+    <!-- <node name="stretch_controller_spawner" pkg="controller_manager" type="spawner"
+        args="/stretch/diff_drive_controller"/> -->
 
 
-    <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
+    <!-- <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
         <param name="default_topic" value="/stretch/diff_drive_controller/cmd_vel"/>
-    </node>
+    </node> -->
     
 
 
