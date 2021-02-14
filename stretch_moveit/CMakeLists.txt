@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1.3)
-project(stretch_moveit_config)
+project(stretch_moveit)
 
 find_package(catkin REQUIRED)
 
