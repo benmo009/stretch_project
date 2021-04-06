@@ -1,39 +1,18 @@
 <launch>
-    <env name="ROS_MASTER_URI" value="http://ben-ThinkPad:11311/" />
+    <env name="ROS_MASTER_URI" value="http://ubuntu:11311/" />
 
     <!-- Need to figure out if I need env-loader -->
-    <machine name="stretch-re1-1027" user="hello-robot" address="192.168.1.111" password="hello2020" env-loader="/opt/ros/melodic/env.sh"/>
-    <machine name="stretch-re1-1028" user="hello-robot" address="192.168.1.115" password="hello2020" env-loader="/opt/ros/melodic/env.sh"/>
+    <machine name="stretch-re1-1027" user="hello-robot" address="192.168.1.111" env-loader="~/ben_mo_test/remote_env.sh" /> 
+    
+    
 
     <group ns="stretch_re1_1027">
-        <include file="$(find stretch_core)/launch/stretch_driver.launch" machine="stretch-re1-1027" />
-        <!-- <node
-            name="joint_state_publisher"
-            pkg="joint_state_publisher"
-            type="joint_state_publisher" 
-            machine="stretch-re1-1027" >
-            <param name="rate" value="15.0"/>
-            <rosparam param="source_list">
-                [/stretch/joint_states]
-            </rosparam>
-            
-        </node>
-        <node
-            name="robot_state_publisher"
-            pkg="robot_state_publisher"
-            type="robot_state_publisher"
-            macine="stretch-re1-1027" >
-            <param name="publish_frequency" value="15.0"/>
-        </node>
-        
-        <node name="stretch_driver" pkg="stretch_core" type="stretch_driver" output="screen" machine="stretch-re1-1027">
-            <param name="rate" type="double" value="25.0"/>
-            <param name="timeout" type="double" value="0.5"/>
-            <remap from="cmd_vel" to="/stretch/cmd_vel" />
-            <remap from="joint_states" to="/stretch/joint_states" />
-            <param name="controller_calibration_file" type="string" value="$(arg calibrated_controller_yaml_file)"/>
-            <param name="mode" type="string" value="navigation" />
-        </node> -->
+        <include file="$(find stretch_basic_nodes)/launch/stretch_driver_remote.launch" >
+            <arg name="machine" value="stretch-re1-1027" />
+            <arg name="mode" value="navigation" />
+        </include>
     </group>
 
+    
+    <!-- <machine name="stretch-re1-1028" user="hello-robot" address="192.168.1.115" password="hello2020" env-loader="/opt/ros/melodic/env.sh"/> -->
 </launch>
