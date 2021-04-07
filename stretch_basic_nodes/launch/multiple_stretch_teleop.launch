@@ -1,18 +1,32 @@
 <launch>
+    <!-- Set up ROS master and remote machines -->
     <env name="ROS_MASTER_URI" value="http://ubuntu:11311/" />
 
-    <!-- Need to figure out if I need env-loader -->
-    <machine name="stretch-re1-1027" user="hello-robot" address="192.168.1.111" env-loader="~/ben_mo_test/remote_env.sh" /> 
+    <machine name="stretch-re1-1027" user="hello-robot" address="192.168.1.111" env-loader="~/stretch_remote_env.sh" /> 
+    <machine name="stretch-re1-1028" user="hello-robot" address="192.168.1.115" env-loader="~/stretch_remote_env.sh" /> 
+    <!-- -->
     
-    
-
+    <!-- Run stretch_driver on stretch-re1-1027 -->
     <group ns="stretch_re1_1027">
         <include file="$(find stretch_basic_nodes)/launch/stretch_driver_remote.launch" >
             <arg name="machine" value="stretch-re1-1027" />
             <arg name="mode" value="navigation" />
         </include>
     </group>
+    <!-- -->
 
-    
-    <!-- <machine name="stretch-re1-1028" user="hello-robot" address="192.168.1.115" password="hello2020" env-loader="/opt/ros/melodic/env.sh"/> -->
+    <!-- Run stretch_driver on stretch-re1-1028 -->
+    <group ns="stretch_re1_1028">
+        <include file="$(find stretch_basic_nodes)/launch/stretch_driver_remote.launch" >
+            <arg name="machine" value="stretch-re1-1028" />
+            <arg name="mode" value="navigation" />
+        </include>
+    </group>
+    <!-- -->
+
+    <!-- Start Teleop keyboard node on ROS Master -->
+    <node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen" >
+        <remap from="cmd_vel" to="stretch/cmd_vel" />
+    </node>
+    <!-- -->
 </launch>
