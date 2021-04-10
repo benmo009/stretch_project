@@ -1,6 +1,9 @@
 <launch>
+    <!-- Hostname argument for master computer's hostname -->
+    <arg name="hostname" />
+
     <!-- Set up ROS master and remote machines -->
-    <env name="ROS_MASTER_URI" value="http://ubuntu:11311/" />
+    <env name="ROS_MASTER_URI" value="http://$(arg hostname):11311/" />
 
     <machine name="stretch-re1-1027" user="hello-robot" address="192.168.1.111" env-loader="~/stretch_remote_env.sh" /> 
     <machine name="stretch-re1-1028" user="hello-robot" address="192.168.1.115" env-loader="~/stretch_remote_env.sh" /> 
