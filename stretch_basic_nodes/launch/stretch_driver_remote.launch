@@ -1,4 +1,8 @@
 <launch>
+  <!-- Modified stretch_driver launch file for the Stretch Robot by Hello Robot-->
+  <!-- Added an argument for machine so remote launch works -->
+  <!-- Added an argument for stretch_driver mode -->
+  
   <arg name="machine" />
   
   <param name="robot_description" textfile="$(find stretch_description)/urdf/stretch.urdf" />
