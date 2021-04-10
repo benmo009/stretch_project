@@ -2,6 +2,7 @@
   <arg name="machine" />
   
   <param name="robot_description" textfile="$(find stretch_description)/urdf/stretch.urdf" />
+  <!-- This should be the controller_calibration_head.yaml file path on Stretch machine -->
   <arg name="calibrated_controller_yaml_file" value="/home/hello-robot/catkin_ws/src/stretch_ros/stretch_core/config/controller_calibration_head.yaml"/>
   <arg name="mode" default="position" />
   
@@ -33,5 +34,3 @@
     <param name="mode" type="string" value="$(arg mode)" />
   </node>  
 </launch>
-
-
