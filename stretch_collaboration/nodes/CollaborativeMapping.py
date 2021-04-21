@@ -32,6 +32,8 @@ class FunmapNode(hm.HelloNode):
         head_scan = ma.HeadScan(voi_side_m=16.0)
         head_scan.execute_full(node, fast_scan=fast_scan)
 
+        self.load_headscan_to_param(head_scan)
+
 
     def main(self):
         # Initialize nodes, publishers, subscribers, services
@@ -56,3 +58,8 @@ class FunmapNode(hm.HelloNode):
                 'map_to_base_mat' : headscan.map_to_base_mat.tolist()}
 
         rospy.set_param("stretch_re1_2017/map", data)
+
+if __name__ == "__main__":
+    colab_map = FunmapNode()
+    colab_map.main()
+    colab_map.perform_head_scan()
