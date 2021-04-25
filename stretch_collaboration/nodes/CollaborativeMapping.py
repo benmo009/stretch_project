@@ -78,7 +78,7 @@ class FunmapNode(hm.HelloNode):
         else:
             transform_corrected_to_original = None
         
-        mha_data = {'image.dtype': str(mhi.image.dtype),
+        mhi_data = {'image.dtype': str(mhi.image.dtype),
                 'image.shape': list(mhi.image.shape),
                 'm_per_pix': mhi.m_per_pix,
                 'm_per_height_unit': mhi.m_per_height_unit,
