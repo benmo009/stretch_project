@@ -88,7 +88,9 @@ class FunmapNode(hm.HelloNode):
                 'transform_corrected_to_original': transform_corrected_to_original
         }
 
-        rospy.set_param("stretch_re1_1027/MaxHeightImage", mhi_data)
+        #rospy.set_param("stretch_re1_1027/MaxHeightImage", mhi_data)
+        for key in mhi_data.keys():
+            rospy.set_param("stretch_re1_1027/MaxHeightImage/{}".format(key), mhi_data[key])
         rospy.set_param("stretch_re1_1027/MaxHeightImage/image", im)
         rospy.set_param("stretch_re1_1027/MaxHeightImage/rgb_image", rgb_im)
         rospy.set_param("stretch_re1_1027/MaxHeightImage/camera_depth_image", cam_depth_im)
