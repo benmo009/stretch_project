@@ -80,7 +80,6 @@ class FunmapNode(hm.HelloNode):
         
         mha_data = {'image.dtype': str(mhi.image.dtype),
                 'image.shape': list(mhi.image.shape),
-                'np.max(image)': max_pix, 
                 'm_per_pix': mhi.m_per_pix,
                 'm_per_height_unit': mhi.m_per_height_unit,
                 'voi_data': voi_data,
@@ -96,7 +95,12 @@ class FunmapNode(hm.HelloNode):
 
 
     def get_headscan_from_param(self):
-        pass
+        hs_data = rospy.get_param("stretch_re1_1027/HeadScan")
+        print(hs_data)
+
+        mhi_data = rospy.get_param("stretch_re1_1027/MaxHeightImage")
+        print(mhi_data.keys())
+
 
 if __name__ == "__main__":
     colab_map = FunmapNode()
