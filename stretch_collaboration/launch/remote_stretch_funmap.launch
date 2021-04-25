@@ -23,9 +23,9 @@
   <!-- MAPPING -->
   <!-- example of args for funmap that loads a map on launch (should have double hyphen before load_map) -->
   <!-- load_map FILENAME -->
-  <node name="funmap" pkg="stretch_collaboration" type="MinimalFunmap" output="screen" >
+  <!-- <node name="funmap" pkg="stretch_collaboration" type="MinimalFunmap" output="screen" >
     <param name="debug_directory" type="string" value="$(arg debug_directory)"/>
-  </node>
+  </node> -->
   <!-- -->
 
   <!-- IMU FILTER -->
