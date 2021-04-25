@@ -59,31 +59,32 @@ class FunmapNode(hm.HelloNode):
         rospy.set_param("stretch_re1_1027/HeadScan", hs_data)
 
         # Load maxHeightImage data
-        rgb_im = self.max_height_im.rgb_image.tolist()
-        cam_depth_im = self.max_height_im.camera_depth_image.tolist()
-        im = self.max_height_im.image.tolist()
+        mhi = headscan.max_height_im
+        rgb_im = mhi.rgb_image.tolist()
+        cam_depth_im = mhi.camera_depth_image.tolist()
+        im = mhi.image.tolist()
 
-        voi_data = self.max_height_im.voi.serialize()
+        voi_data = mhi.voi.serialize()
         voi_data['origin'] = voi_data['origin'].tolist()
         voi_data['axes'] = voi_data['axes'].tolist()
 
-        if self.max_height_im.transform_original_to_corrected is not None:
-            transform_original_to_corrected = self.max_height_im.transform_original_to_corrected.tolist()
+        if mhi.transform_original_to_corrected is not None:
+            transform_original_to_corrected = mhi.transform_original_to_corrected.tolist()
         else:
             transform_original_to_corrected = None
 
-        if self.max_height_im.transform_corrected_to_original is not None:
-            transform_corrected_to_original = self.max_height_im.transform_corrected_to_original.tolist()
+        if mhi.transform_corrected_to_original is not None:
+            transform_corrected_to_original = mhi.transform_corrected_to_original.tolist()
         else:
             transform_corrected_to_original = None
         
-        mha_data = {'image.dtype': str(self.max_height_im.image.dtype),
-                'image.shape': list(self.max_height_im.image.shape),
+        mha_data = {'image.dtype': str(mhi.image.dtype),
+                'image.shape': list(mhi.image.shape),
                 'np.max(image)': max_pix, 
-                'm_per_pix': self.max_height_im.m_per_pix,
-                'm_per_height_unit': self.max_height_im.m_per_height_unit,
+                'm_per_pix': mhi.m_per_pix,
+                'm_per_height_unit': mhi.m_per_height_unit,
                 'voi_data': voi_data,
-                'image_origin': self.max_height_im.image_origin.tolist(),
+                'image_origin': mhi.image_origin.tolist(),
                 'transform_original_to_corrected': transform_original_to_corrected, 
                 'transform_corrected_to_original': transform_corrected_to_original
         }
@@ -94,7 +95,8 @@ class FunmapNode(hm.HelloNode):
         rospy.set_param("stretch_re1_1027/MaxHeightImage/camera_depth_image", cam_depth_im)
 
 
-    def get_headscan_from_param(self)
+    def get_headscan_from_param(self):
+        pass
 
 if __name__ == "__main__":
     colab_map = FunmapNode()
