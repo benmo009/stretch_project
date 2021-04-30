@@ -1,21 +1,19 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 from stretch_collaboration.msg import HeadScan, MaxHeightImage, VolumeOfInterest
-from geometry_msgs.msg import Vector3
-rom stretch_funmap import mapping as ma
 
 def voi_to_msg(voi):
     voi_msg = VolumeOfInterest()
-    voi_msg.axes = voi['axes']
-    voi_msg.frame_id = voi['frame_id']
+    voi_msg.axes = voi.axes
+    voi_msg.frame_id = voi.frame_id
     
-    voi_msg.origin.x = voi['origin'][0]
-    voi_msg.origin.y = voi['origin'][1]
-    voi_msg.origin.z = voi['origin'][2]
+    voi_msg.origin.x = voi.origin[0]
+    voi_msg.origin.y = voi.origin[1]
+    voi_msg.origin.z = voi.origin[2]
 
-    voi_msg.in_m.x = voi['in_m'][0]
-    voi_msg.in_m.y = voi['in_m'][1]
-    voi_msg.in_m.z = voi['in_m'][2]
+    voi_msg.in_m.x = voi.x_in_m[0]
+    voi_msg.in_m.y = voi.y_in_m[1]
+    voi_msg.in_m.z = voi.z_in_m[2]
 
     return voi_msg
 
@@ -32,7 +30,7 @@ def max_height_image_to_msg(max_height_im):
     mhi_msg.transform_original_to_corrected = max_height_im.transform_original_to_corrected
     mhi_msg.transform_corrected_to_original = max_height_im.transform_corrected_to_original
     mhi_msg.m_per_pix = max_height_im.m_per_pix
-    mhi_msg.m_per_height = max_height_im.m_per_height
+    mhi_msg.m_per_height = max_height_im.m_per_height_unit
 
     mhi_msg.image_origin.x = max_height_im.image_origin[0]
     mhi_msg.image_origin.y = max_height_im.image_origin[1]
