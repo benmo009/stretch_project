@@ -1,0 +1,9 @@
+float32[] image
+float32[] rgb_image
+float32[] camera_depth_image
+stretch_collaboration/VolumeOfInterest voi 
+float32[] transform_original_to_corrected
+float32[] transform_corrected_to_original
+float32 m_per_pix
+float32 m_per_height
+geometry_msgs/Vector3 image_origin

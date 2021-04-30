@@ -1,0 +1,10 @@
+stretch_collaboration/MaxHeightImage max_height_im
+float32[] robot_xy_pix
+float32[] robot_ang_rad
+time timestamp
+float32[] base_link_to_image_mat
+float32[] base_link_to_map_mat
+float32[] image_to_map_mat
+float32[] image_to_base_link_mat
+float32[] map_to_image_mat
+float32[] map_to_base_link_mat
