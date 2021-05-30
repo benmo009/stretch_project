@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import rospy
+import rosbag
 from visualization_msgs.msg import MarkerArray, Marker
 from geometry_msgs.msg import Pose, Vector3
 
@@ -10,6 +11,7 @@ class HumanLocalizer:
         rospy.init_node("human_localizer")
 
         self.rate = rospy.Rate(2)
+        self.bag = rosbag.Bag("/home/ben/human_localization.bag", 'w')
 
         # Initialize MarkerArray subscriber
         self.face_sub = rospy.Subscriber("/faces/marker_array", MarkerArray, self.face_callback)
@@ -17,13 +19,19 @@ class HumanLocalizer:
 
         self.marker_pub = rospy.Publisher("/localized_person", Marker, queue_size=0)
 
+        self.face_pose = Pose()
+        self.avg_body = Vector3()
+
         rospy.wait_for_message("/body_landmarks/marker_array", MarkerArray)
         rospy.wait_for_message("/faces/marker_array", MarkerArray)
+
+
 
     def face_callback(self, data):
         if len(data.markers) > 0:
             face_marker = data.markers[0]
             self.face_pose = face_marker.pose
+            self.bag.write('face', self.face_pose.position)
 
         else:
             rospy.loginfo("No face detected")
@@ -34,10 +42,14 @@ class HumanLocalizer:
         if len(data.markers) > 0:
             points = data.markers[0].points 
             avg_point = Vector3()
+
+            # Add check for length of points 
             for point in points:
                 avg_point.x += point.x 
                 avg_point.y += point.y 
                 avg_point.z += point.z 
+
+            
 
             avg_point.x /= len(points)
             avg_point.y /= len(points)
@@ -54,7 +66,8 @@ class HumanLocalizer:
             marker.scale.z = 0.05
             marker.type=1
             
-            self.body_avg = avg_point
+            self.body_pose = avg_point
+            self.bag.write('body', self.body_pose)
 
             self.marker_pub.publish(marker)
             rospy.loginfo(avg_point)
@@ -72,10 +85,9 @@ class HumanLocalizer:
                                                     self.face_pose.position.z))
 
             rospy.loginfo("Body position - x: {:.3f} y: {:.3f} z: {:.3f}".format(
-                                                    self.body_avg.x, 
-                                                    self.body_avg.y, 
-                                                    self.body_avg.z))
-            rospy.loginfo(self.face_pose.position)
+                                                    self.body_pose.x, 
+                                                    self.body_pose.y, 
+                                                    self.body_pose.z))
             self.rate.sleep()
         #rospy.spin()
 

@@ -1,9 +1,9 @@
 <launch>
 
-    <node name="human_localizer" pkg="stretch_trajectory_predict" type="HumanLocalizer.py" />
+    <node name="human_localizer" pkg="stretch_trajectory_predict" type="HumanLocalizer.py" output="screen" />
 
     <!-- VISUALIZE DETECTION -->
-    <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find stretch_trajectory_predict)/rviz/human_localization.rviz" />
+    <node name="rviz_laptop" pkg="rviz" type="rviz" output="screen" args="-d $(find stretch_trajectory_predict)/rviz/human_localization.rviz" />
     <!-- -->
         
 </launch>
